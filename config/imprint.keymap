@@ -11,16 +11,6 @@
 / {
     chosen { zmk,matrix-transform = &imprint_function_row_full_bottom_row; };
 
-    &caps_word {
-        continue-list = <UNDERSCORE MINUS BACKSPACE DELETE DOT>;
-    };
-
-    &msc {
-        acceleration-exponent = <1>;   // 0 = constant speed, 1 = linear accel, 2 = quadratic
-        time-to-max-speed-ms = <150>;  // how fast it ramps up
-        delay-ms = <0>;                // delay before movement starts
-    };
-
     macros {
         shift_layer: shift_layer {
             compatible = "zmk,behavior-macro";
@@ -292,6 +282,16 @@
             >;
         };
     };
+};
+
+&caps_word {
+    continue-list = <UNDERSCORE MINUS BACKSPACE DELETE DOT>;
+};
+
+&msc {
+    acceleration-exponent = <1>;   // 0 = constant speed, 1 = linear accel, 2 = quadratic
+    time-to-max-speed-ms = <150>;  // how fast it ramps up
+    delay-ms = <0>;                // delay before movement starts
 };
 
 // right hand trackball configuration
