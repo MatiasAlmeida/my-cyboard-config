@@ -82,7 +82,7 @@
                        <&macro_release &mo 7 &kp LSHFT>;
         };
 
-        j_alt: j_alt {
+        k_alt: k_alt {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
@@ -92,7 +92,7 @@
                        <&macro_release &mo 8 &kp RALT>;
         };
 
-        k_ctrl: k_ctrl {
+        j_ctrl: j_ctrl {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
@@ -102,7 +102,7 @@
                        <&macro_release &mo 8 &kp RCTRL>;
         };
 
-        k_shift: k_shift {
+        j_shift: j_shift {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
@@ -204,10 +204,10 @@
         Left_Shift_Layer {
             bindings = <
 &trans  &trans  &trans  &trans   &trans   &trans       &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &none   &none   &none    &none    &none        &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &none   &none   &none    &none    &none        &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &none   &none   &d_alt   &f_ctrl  &none        &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &none   &none   &none    &none    &none        &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans   &trans   &trans       &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans   &trans   &trans       &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &d_alt   &f_ctrl  &trans       &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans   &trans   &trans       &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans   &trans                        &trans  &trans  &trans  &trans  &trans
                         &trans   &trans   &trans       &trans  &trans  &trans
                         &trans   &trans   &trans       &trans  &trans  &trans
@@ -218,10 +218,10 @@
         Right_Shift_Layer {
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans       &none   &none   &none   &none   &none   &trans
-&trans  &trans  &trans  &trans  &trans  &trans       &none   &none   &none   &none   &none   &trans
-&trans  &trans  &trans  &trans  &trans  &trans       &none   &j_alt  &k_ctrl &none   &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans       &none   &none   &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans       &trans  &j_ctrl &k_alt  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans                       &trans  &trans  &trans  &trans  &trans
                         &trans  &trans  &trans       &trans  &trans  &trans
                         &trans  &trans  &trans       &trans  &trans  &trans
@@ -248,7 +248,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans   &trans   &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans   &trans   &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans   &trans   &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans       &trans  &j_alt   &k_shift &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans       &trans  &j_shift &k_alt   &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans   &trans   &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans                       &trans   &trans   &trans  &trans  &trans
                         &trans  &trans  &trans       &trans  &trans   &trans
@@ -273,12 +273,12 @@
         // layer 8
         Right_Restricted_Layer {
             bindings = <
-&none  &none  &none  &none  &none  &none        &none  &none  &none  &none  &none  &none
-&none  &none  &none  &none  &none  &none        &none  &none  &none  &none  &none  &none
-&none  &none  &none  &none  &none  &none        &none  &none  &none  &none  &none  &none
-&none  &none  &none  &none  &none  &none        &none  &none  &none  &none  &none  &none
-&none  &none  &none  &none  &none  &none        &none  &none  &none  &none  &none  &none
-&none  &none  &none  &none  &none                      &none  &none  &none  &none  &none
+&none  &none  &none  &none    &none &none       &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none    &none &none       &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none    &none &none       &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none    &none &none       &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none    &none &none       &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none    &none                    &none  &none  &none  &none  &none
                      &kp BSPC &none &none       &none  &none  &none
                      &none    &none &none       &none  &none  &none
             >;
