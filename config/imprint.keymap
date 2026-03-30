@@ -175,14 +175,14 @@
         // layer 1
         Second_Layer {
             bindings = <
-&trans  &trans  &trans  &trans   &trans     &trans           &trans  &kp LC(LA(LS(J))) &kp LC(LA(LS(L))) &kp LC(LA(LS(P))) &trans  &kp LC(LA(LS(M)))
-&trans  &trans  &trans  &trans   &trans     &trans           &trans  &trans            &trans            &trans            &trans  &trans
-&trans  &trans  &trans  &trans   &trans     &trans           &trans  &kp HOME          &kp END           &kp PSCRN         &trans  &trans
-&trans  &trans  &trans  &trans   &trans     &trans           &trans  &kp INS           &kp PG_UP         &kp PG_DN         &trans  &trans
-&trans  &trans  &trans  &trans   &trans     &trans           &trans  &trans            &trans            &trans            &trans  &trans
-&trans  &trans  &trans  &trans   &trans                              &msc SCRL_DOWN    &msc SCRL_UP      &trans            &trans  &trans
-                        &kp DEL  &mkp MCLK  &kp CAPS         &trans  &trans            &trans
-                        &mkp MB4 &mkp MB5   &out OUT_TOG     &trans  &trans            &trans
+&trans  &trans  &trans  &trans   &trans     &trans           &trans  &kp LC(LA(J))  &kp LC(LA(L)) LC(LA(P)) &trans  &kp LC(LA(M))
+&trans  &trans  &trans  &trans   &trans     &trans           &trans  &trans         &trans        &trans    &trans  &trans
+&trans  &trans  &trans  &trans   &trans     &trans           &trans  &kp HOME       &kp END       &kp PSCRN &trans  &trans
+&trans  &trans  &trans  &trans   &trans     &trans           &trans  &kp INS        &kp PG_UP     &kp PG_DN &trans  &trans
+&trans  &trans  &trans  &trans   &trans     &trans           &trans  &trans         &trans        &trans    &trans  &trans
+&trans  &trans  &trans  &trans   &trans                              &msc SCRL_DOWN &msc SCRL_UP  &trans    &trans  &trans
+                        &kp DEL  &mkp MCLK  &kp CAPS         &trans  &trans         &trans
+                        &mkp MB4 &mkp MB5   &out OUT_TOG     &trans  &trans         &trans
             >;
         };
 
