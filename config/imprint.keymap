@@ -175,14 +175,14 @@
         // layer 1
         Second_Layer {
             bindings = <
-&trans  &trans  &trans  &trans   &trans     &trans           &trans  &kp LA(LS(N9)) &kp LA(LS(N8)) &kp LA(LS(N0)) &trans  &kp LA(LS(DOT))
-&trans  &trans  &trans  &trans   &trans     &trans           &trans  &trans         &trans         &trans         &trans  &trans
-&trans  &trans  &trans  &trans   &trans     &trans           &trans  &kp HOME       &kp END        &kp PSCRN      &trans  &trans
-&trans  &trans  &trans  &trans   &trans     &trans           &trans  &kp INS        &kp PG_UP      &kp PG_DN      &trans  &trans
-&trans  &trans  &trans  &trans   &trans     &trans           &trans  &trans         &trans         &trans         &trans  &trans
-&trans  &trans  &trans  &trans   &trans                              &msc SCRL_DOWN &msc SCRL_UP   &trans         &trans  &trans
-                        &kp DEL  &mkp MCLK  &kp CAPS         &trans  &trans         &trans
-                        &mkp MB4 &mkp MB5   &out OUT_TOG     &trans  &trans         &trans
+&trans  &trans  &trans  &trans   &trans     &trans           &trans          &trans         &trans         &trans         &trans  &trans
+&trans  &trans  &trans  &trans   &trans     &trans           &kp LA(LS(DOT)) &kp LA(LS(N9)) &kp LA(LS(N8)) &kp LA(LS(N0)) &trans  &trans
+&trans  &trans  &trans  &trans   &trans     &trans           &trans          &kp HOME       &kp END        &kp PSCRN      &trans  &trans
+&trans  &trans  &trans  &trans   &trans     &trans           &trans          &kp INS        &kp PG_UP      &kp PG_DN      &trans  &trans
+&trans  &trans  &trans  &trans   &trans     &trans           &trans          &trans         &trans         &trans         &trans  &trans
+&trans  &trans  &trans  &trans   &trans                                      &msc SCRL_DOWN &msc SCRL_UP   &trans         &trans  &trans
+                        &kp DEL  &mkp MCLK  &kp CAPS         &trans          &trans         &trans
+                        &mkp MB4 &mkp MB5   &out OUT_TOG     &trans          &trans         &trans
             >;
         };
 
