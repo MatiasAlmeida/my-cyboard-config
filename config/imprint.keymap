@@ -75,25 +75,17 @@
         // H + J + , → activate right trackball scroll layer
         right_tb_scroll {
             timeout-ms = <50>;
-            key-positions = <42 43 56>;  // RGUI, H, J positions
+            key-positions = <42 43 56>;  // H, J, COMMA positions
             bindings = <&mo 7>;
         };
 
         // C + F + G → activate left trackball cursor layer
         left_tb_cursor {
             timeout-ms = <50>;
-            key-positions = <51 40 41>;  // RCLK, D, F positions
+            key-positions = <51 40 41>;  // C, F, G positions
             bindings = <&mo 8>;
         };
     };
-
-    scroll_scaler: scroll_scaler {
-        compatible = "zmk,input-processor-scaler";
-        #input-processor-cells = <2>;
-        type = <INPUT_EV_REL>;
-        codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
-        track-remainders;
-    };    
 
     keymap {
         compatible = "zmk,keymap";
@@ -115,7 +107,7 @@
         // layer 1
         Second_Layer {
             bindings = <
-&none  &none  &none     &none     &none     &none           &trans         &trans         &trans         &trans         &trans          &trans
+&none  &none  &none     &none     &none     &none           &kp C_PREV     &kp C_PP       &kp C_NEXT     &kp C_MUTE     &kp C_VOL_DN    &kp C_VOL_UP
 &none  &none  &none     &none     &none     &none           &kp LA(LS(N7)) &kp LA(LS(N6)) &kp LA(LS(N8)) &kp LA(LS(N0)) &kp LA(LS(DOT)) &kp LA(LS(COMMA))
 &none  &none  &none     &none     &none     &none           &kp LA(LS(N5)) &kp HOME       &kp END        &kp PSCRN      &trans          &trans
 &none  &none  &kp LSHFT &kp LCTRL &kp LALT  &none           &kp LA(LS(N4)) &kp INS        &kp PG_UP      &kp PG_DN      &trans          &trans
@@ -130,9 +122,9 @@
         Keyboard_Control_Layer {
             bindings = <
 &bt BT_CLR_ALL &trans       &trans       &trans         &trans          &trans           &trans          &trans           &trans           &trans           &trans           &trans
-&bt BT_CLR     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2   &bt BT_SEL 3    &bt BT_SEL 4     &trans          &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &trans           &trans           &trans
-&trans         &trans       &trans       &trans         &trans          &trans           &rgb_ug RGB_TOG &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_BRI  &rgb_ug RGB_SPI  &sys_reset
-&trans         &trans       &trans       &trans         &trans          &trans           &trans          &rgb_ug RGB_HUD  &rgb_ug RGB_SAD  &rgb_ug RGB_BRD  &rgb_ug RGB_SPD  &bootloader
+&bt BT_CLR     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2   &bt BT_SEL 3    &bt BT_SEL 4     &trans          &trans           &rgb_ug RGB_EFF  &trans           &trans           &trans
+&sys_reset     &trans       &trans       &trans         &trans          &trans           &rgb_ug RGB_TOG &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_BRI  &rgb_ug RGB_SPI  &sys_reset
+&bootloader    &trans       &trans       &trans         &trans          &trans           &trans          &rgb_ug RGB_HUD  &rgb_ug RGB_SAD  &rgb_ug RGB_BRD  &rgb_ug RGB_SPD  &bootloader
 &trans         &trans       &trans       &trans         &trans          &trans           &trans          &trans           &trans           &trans           &trans           &trans
 &trans         &trans       &trans       &msc SCRL_LEFT &msc SCRL_RIGHT                                  &trans           &trans           &trans           &trans           &trans
                                          &trans         &trans          &trans           &trans          &trans           &trans
@@ -160,7 +152,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans    &trans   &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans    &trans   &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans    &trans   &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans       &trans  &kp RCTRL &kp RALT &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans       &trans  &kp RCTRL &kp LALT &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans    &trans   &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans                       &trans    &trans   &trans  &trans  &trans
                         &trans  &trans  &trans       &trans  &trans    &trans
@@ -188,7 +180,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans    &trans   &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans    &trans   &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans    &trans   &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans       &trans  &kp RSHFT &kp RALT &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans       &trans  &kp RSHFT &kp LALT &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans    &trans   &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans                       &trans    &trans   &trans  &trans  &trans
                         &trans  &trans  &trans       &trans  &trans    &trans
@@ -256,7 +248,7 @@
 
 &trackball_central_listener {
     input-processors =
-        // multiply sensitivity by 1, divide by 3 (make it slower for scrolling),
+        // multiply sensitivity by 1, divide by 2 (make it slower for scrolling),
         <&zip_xy_scaler 1 2>,
         // make this trackball output scrolling events by default instead of cursor movement,
         <&zip_xy_to_scroll_mapper>,
