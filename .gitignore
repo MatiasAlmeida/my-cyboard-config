@@ -1,0 +1,2 @@
+# Local firmware builds (zmk-build in flake.nix).
+/build/

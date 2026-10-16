@@ -1,8 +1,16 @@
 # CLAUDE.md
 
-Guidance for Claude Code in this repo: the ZMK configuration of the user's Cyboard Imprint, a wireless split keyboard with a trackball on each half (Cyboard "Assimilator" nRF52840 boards). GitHub Actions builds the firmware (`build.yaml`: board `assimilator-bt` with shields `imprint_left` and `imprint_right`); the `.uf2` files come from the run's `firmware` artifact. The keymap is `config/imprint.keymap`.
+Guidance for Claude Code in this repo: the ZMK configuration of the user's Cyboard Imprint, a wireless split keyboard with a trackball on each half (Cyboard "Assimilator" nRF52840 boards). GitHub Actions builds the firmware (`build.yaml`: board `assimilator-bt` with shields `imprint_left` and `imprint_right`); the `.uf2` files come from the run's `firmware` artifact, or from a local build (below). The keymap is `config/imprint.keymap`.
 
 The keyboard goes with the user to every machine, so this file holds what belongs to the keyboard. How it interacts with the user's NixOS setup (layouts, Hyprland binds) is documented in the `nixos-config` repo's `CLAUDE.md`.
+
+## Building locally
+
+- `flake.nix` has a Nix dev shell that builds the firmware like the GitHub Actions workflow, on any machine with Nix: `nix develop -c zmk-build` builds both halves (`zmk-build left` or `right` builds one) into `build/imprint_left-assimilator-bt-zmk.uf2` and `build/imprint_right-assimilator-bt-zmk.uf2`, the CI artifacts' names (`build/` is git-ignored). Inside `nix develop`, `west` and the rest are at hand for other commands.
+- The shell: Zephyr SDK 0.16.9 (ARM toolchain only) and the Python environment for west and the build, from nix-community's `zephyr-nix` with Zephyr 3.5.0 (ZMK v0.3.0 builds on zmkfirmware's `v3.5.0+zmk-fixes`), plus CMake, Ninja, `dtc` and git. `flake.lock` pins them.
+- `zmk-build` follows ZMK's `build-user-config.yml` at v0.3.0: since this repo has `zephyr/module.yml`, the west workspace lives outside it (its own `zephyr/` would clash with Zephyr's checkout), in `~/.cache/zmk/my-cyboard-config` (or `$ZMK_WORKSPACE`), about 2.1 GB: ZMK, Zephyr, Cyboard's `zmk-keyboards` and `zmk-pmw3610-driver`. It runs `west init` and `west update` only when `config/west.yml` changed (a SHA-256 stamp in the workspace). The keymap and `imprint.conf` are read from this repo's `config/`, and this repo is passed as an extra module (`-DZMK_EXTRA_MODULES`). ZMK's `find_package(Zephyr HINTS ../zephyr)` doesn't reach Zephyr in that layout; CI registers it with `west zephyr-export` (an entry in `~/.cmake`), and `zmk-build` passes `-DZephyr_DIR` instead.
+- Verified on 2026-10-16 at commit `a901090`: both `.uf2` files were byte for byte the CI run's artifacts (same SHA-256). The first run fetched the SDK and the workspace; after that a full build of both halves takes about 20 s.
+- Flashing a local build is the same as a CI one (below).
 
 ## Flashing
 
