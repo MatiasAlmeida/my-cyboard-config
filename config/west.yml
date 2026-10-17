@@ -4,6 +4,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: Cyboard-DigitalTailor
       url-base: https://github.com/Cyboard-DigitalTailor
+    - name: kot149
+      url-base: https://github.com/kot149
     # Additional modules containing boards/shields/custom code can be listed here as well
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
   projects:
@@ -15,5 +17,10 @@ manifest:
       remote: Cyboard-DigitalTailor
       revision: v2026.07
       import: config/west.yml
+    # Trackball scroll snap (config/imprint.keymap); its v1 branch has no
+    # tags, so pinned to the commit tested here (2026-09-21).
+    - name: zmk-scroll-snap
+      remote: kot149
+      revision: 62a669c32353576df18d6f835ccb2133e2238e1d
   self:
     path: config

@@ -235,6 +235,34 @@
     delay-ms = <0>;                // delay before movement starts
 };
 
+// Trackball scroll snap (kot149/zmk-scroll-snap, in config/west.yml): a
+// trackball's scroll goes along one axis at a time, the dominant one, instead
+// of both interleaved. It waits for the first require-n-samples events of a
+// roll (each one axis), keeps their motion and sends it along the axis with
+// the larger sum, keeps that axis while it stays the dominant one or for
+// lock-duration-ms after, and starts over after idle-reset-timeout-ms without
+// motion. Thresholds are [num den]: vertical if |y/x| > y-threshold,
+// horizontal if |y/x| < x-threshold; 1/1 for both is the dominant axis with
+// no bias (the module's default leaves 5/8 to 1 unsent). xy-threshold is
+// the module's unimplemented diagonal (0 0: off). One instance per trackball,
+// so the two don't share samples. Its code runs on the central (left half),
+// like the rest of both trackballs' input processors.
+#define SCROLL_SNAP_SETTINGS                        \
+    compatible = "zmk,input-processor-scroll-snap"; \
+    #input-processor-cells = <0>;                   \
+    x-threshold = <1 1>;                            \
+    y-threshold = <1 1>;                            \
+    xy-threshold = <0 0>;                           \
+    require-n-samples = <10>;                       \
+    immediate-snap-threshold = <1500>;              \
+    lock-duration-ms = <200>;                       \
+    idle-reset-timeout-ms = <200>;
+
+/ {
+    scroll_snap_left: scroll_snap_left { SCROLL_SNAP_SETTINGS };
+    scroll_snap_right: scroll_snap_right { SCROLL_SNAP_SETTINGS };
+};
+
 // right hand trackball configuration
 
 &trackball_peripheral_listener {
@@ -247,6 +275,7 @@
         input-processors =
             <&zip_xy_scaler 1 2>,
             <&zip_xy_to_scroll_mapper>,
+            <&scroll_snap_right>,
             <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
     };
 };
@@ -259,6 +288,8 @@
         <&zip_xy_scaler 1 2>,
         // make this trackball output scrolling events by default instead of cursor movement,
         <&zip_xy_to_scroll_mapper>,
+        // one axis at a time (see SCROLL_SNAP_SETTINGS),
+        <&scroll_snap_left>,
         // invert vertical scrolling so that the view moves in the same direction as the top of the trackball.,
         <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
 
